@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Story Replacer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    button {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Story Replacer</h1>
+  <p id="story">The [animal] jumped over the [object].</p>
+  <button onclick="replaceWords()">Replace Words</button>
+
+  <script>
+    const story = "The [animal] jumped over the [object].";
+    
+    const replacements = {
+      animal: ["cat", "dog", "rabbit"],
+      object: ["moon", "log", "fence"]
+    };
+
+    function replaceWords() {
+      let updatedStory = story;
+
+      Object.keys(replacements).forEach(key => {
+        const randomWord = replacements[key][Math.floor(Math.random() * replacements[key].length)];
+        updatedStory = updatedStory.replace(`[${key}]`, randomWord);
+      });
+
+      document.getElementById("story").innerText = updatedStory;
+    }
+  </script>
+
+</body>
+</html>
